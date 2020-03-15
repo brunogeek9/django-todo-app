@@ -15,8 +15,8 @@
         <table class="table table-bordered" style="width:60%; margin:auto">
         {% for item in list %}
                 {% if item.completed %}
-                    <tr class="table-secondary">
-                        <td>{{item.title}}</td>
+                    <tr class="table-secondary" >
+                        <td style="text-decoration: line-through">{{item.title}}</td>
                         <td><center> <a href="{% url 'change_todo' item.id %}">Desfazer</a> </center></td>
                         <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
                     </tr>
