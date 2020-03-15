@@ -6,9 +6,18 @@ from .forms import ItemForm
 from django.contrib import messages
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
-# Create your views here.
+
+
 def home(request):
-    template = loader.get_template('home.html')
-    
-    #rendering the template in HttpResponse
-    return HttpResponse(template.render())
+    if request.method == "POST":
+        form = ItemForm(request.POST or None)
+        if form.is_valid:
+            form.save()
+            all_items = TodoItem.objects.all()
+            messages.success(request,('item adicionado'))
+            return render(request, 'todo_list.html', {'list': all_items})            
+    else:
+        print('else')        
+        template = loader.get_template('home.html')
+        all_todos = TodoItem.objects.all()
+        return render(request, 'todo_list.html', {'list': all_todos})

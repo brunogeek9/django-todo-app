@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if messages %}
+    
+    {% endif %}
+    lista
+    <br>
+    {% for item in list %}
+        {{item.title}}
+        
+        {{item.completed}}
+        <br>
+    {% endfor %}
+{% endblock %}
