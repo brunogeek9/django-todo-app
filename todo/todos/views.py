@@ -42,8 +42,8 @@ def change_todo(request, item_id):
 def edit_todo(request, item_id):
     if request.method == "POST":
         todo = TodoItem.objects.get(pk=item_id)
-        
-        form = ItemForm(request.POST or None)
+        # item.completed = False
+        form = ItemForm(request.POST or None, instance=todo)
         
         if form.is_valid:
             form.save()
@@ -53,5 +53,5 @@ def edit_todo(request, item_id):
             return redirect('home1')    
 
     else:
-        all_todos = TodoItem.objects.all()
-        return render(request, 'todo_list.html', {'list': all_todos})
+        edited = TodoItem.objects.get(pk=item_id)
+        return render(request, 'edit_todo.html', {'item': edited})

@@ -16,13 +16,15 @@
         {% for item in list %}
                 {% if item.completed %}
                     <tr class="table-secondary" >
-                        <td style="text-decoration: line-through">{{item.title}}</td>
+                        <td style="text-decoration: line-through"> {{item.title}} </td>
                         <td><center> <a href="{% url 'change_todo' item.id %}">Desfazer</a> </center></td>
                         <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td>{{item.title}}</td>
+                        <td>
+                            <a href="{% url 'edit_todo' item.id %}">{{item.title}}</a>
+                        </td>
                         <td><center> <a href="{% url 'change_todo' item.id %}">Completar</a> </center></td>
                         <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
                     </tr>
