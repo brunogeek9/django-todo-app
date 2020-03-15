@@ -27,6 +27,7 @@ def delete_todo(request,item_id):
     item.delete()
     messages.success(request,('item removido'))
     return redirect('home1')
+
 def change_todo(request, item_id):
     item = TodoItem.objects.get(pk=item_id)
     if item.completed:
@@ -37,3 +38,20 @@ def change_todo(request, item_id):
     item.save()
     messages.success(request,('item alterado'))
     return redirect('home1')    
+
+def edit_todo(request, item_id):
+    if request.method == "POST":
+        todo = TodoItem.objects.get(pk=item_id)
+        
+        form = ItemForm(request.POST or None)
+        
+        if form.is_valid:
+            form.save()
+            all_items = TodoItem.objects.all()
+            messages.success(request,('tarefa atualizada'))
+            # return render(request, 'todo_list.html', {'list': all_items})  
+            return redirect('home1')    
+
+    else:
+        all_todos = TodoItem.objects.all()
+        return render(request, 'todo_list.html', {'list': all_todos})
