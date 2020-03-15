@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import TodoItem
@@ -22,5 +22,8 @@ def home(request):
         all_todos = TodoItem.objects.all()
         return render(request, 'todo_list.html', {'list': all_todos})
 
-def delete(request):
-    pass
+def delete_todo(request,item_id):
+    item = TodoItem.objects.get(pk=item_id)
+    item.delete()
+    messages.success(request,('item removido'))
+    return redirect('home1')

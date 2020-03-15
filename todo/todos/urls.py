@@ -3,7 +3,9 @@ from django.urls import path
 from todos import views
 urlpatterns = [
     # path('',views.index,name='home'),
-    path('',views.home,name='home1')
+    path('',views.home,name='home1'),
+    # path('delete/<int:item_id>/',views.delete_todo, name='delete_todo')
+    path('delete/<item_id>',views.delete_todo, name='delete')
     
     
 ]

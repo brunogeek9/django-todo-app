@@ -3,25 +3,26 @@
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hey! </strong> Tarefa cadastrada com sucesso !!!
+            
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
+            {{message}}
             </div>
         {% endfor %}
     {% endif %}
-   
-    <table class="table table-bordered" style="width:60%; margin:auto">
-    {% for item in list %}
-            <tr>
-                <td>{{item.title}}</td>
-                <td>{{item.completed}}</td>
-                <td>
-                    Apagar
-                </td>
-            </tr>    
-    {% endfor %}
-    <table/>
+   {% if list %}
+        <table class="table table-bordered" style="width:60%; margin:auto">
+        {% for item in list %}
+                <tr>
+                    <td>{{item.title}}</td>
+                    <td>{{item.completed}}</td>
+                    <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
+                </tr>    
+        {% endfor %}
+        <table/>
+   {% endif %}
+    
    
     
 {% endblock %}
