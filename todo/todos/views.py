@@ -21,3 +21,6 @@ def home(request):
         template = loader.get_template('home.html')
         all_todos = TodoItem.objects.all()
         return render(request, 'todo_list.html', {'list': all_todos})
+
+def delete(request):
+    pass

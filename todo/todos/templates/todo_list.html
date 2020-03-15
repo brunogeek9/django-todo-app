@@ -10,12 +10,18 @@
             </div>
         {% endfor %}
     {% endif %}
-    lista
-    <br>
+   
+    <table class="table table-bordered" style="width:60%; margin:auto">
     {% for item in list %}
-        {{item.title}}
-        
-        {{item.completed}}
-        <br>
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.completed}}</td>
+                <td>
+                    Apagar
+                </td>
+            </tr>    
     {% endfor %}
+    <table/>
+   
+    
 {% endblock %}
