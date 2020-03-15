@@ -5,7 +5,7 @@ urlpatterns = [
     # path('',views.index,name='home'),
     path('',views.home,name='home1'),
     # path('delete/<int:item_id>/',views.delete_todo, name='delete_todo')
-    path('delete/<item_id>',views.delete_todo, name='delete')
-    
+    path('delete/<item_id>',views.delete_todo, name='delete'),
+    path('change_todo/<item_id>',views.change_todo, name='change_todo'),
     
 ]

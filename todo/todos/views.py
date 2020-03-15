@@ -27,3 +27,13 @@ def delete_todo(request,item_id):
     item.delete()
     messages.success(request,('item removido'))
     return redirect('home1')
+def change_todo(request, item_id):
+    item = TodoItem.objects.get(pk=item_id)
+    if item.completed:
+        item.completed = False
+    else:
+        item.completed = True
+    # item.completed != item.completed
+    item.save()
+    messages.success(request,('item alterado'))
+    return redirect('home1')    

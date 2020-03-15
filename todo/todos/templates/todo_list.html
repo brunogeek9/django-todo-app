@@ -14,11 +14,20 @@
    {% if list %}
         <table class="table table-bordered" style="width:60%; margin:auto">
         {% for item in list %}
-                <tr>
-                    <td>{{item.title}}</td>
-                    <td>{{item.completed}}</td>
-                    <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
-                </tr>    
+                {% if item.completed %}
+                    <tr class="table-secondary">
+                        <td>{{item.title}}</td>
+                        <td><center> <a href="{% url 'change_todo' item.id %}">Desfazer</a> </center></td>
+                        <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{item.title}}</td>
+                        <td><center> <a href="{% url 'change_todo' item.id %}">Completar</a> </center></td>
+                        <td> <center> <a href="{% url 'delete' item.id %}">Apagar</a> <center/> </td>
+                    </tr>
+                {% endif %}
+                    
         {% endfor %}
         <table/>
    {% endif %}
